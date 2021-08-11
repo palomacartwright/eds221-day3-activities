@@ -1,0 +1,54 @@
+---
+title: "Toolik Chemistry"
+author: "Paloma Cartwright"
+date: "11/08/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+library(janitor)
+```
+
+
+## Real Data 
+
+
+```{r}
+toolik_biochem <- read_csv(here::here("data", "2011_Kling_Akchem.csv")) %>% clean_names() 
+
+toolik_biochem[toolik_biochem == "."] <- NA
+```
+
+```{r}
+
+inlet_biochem <- toolik_biochem %>%  
+  filter(site == "Toolik Inlet") %>% 
+  select(p_h, doc_u_m, tdn_u_m) %>% 
+  mutate(p_h = as.numeric(p_h),
+         doc_u_m = as.numeric(doc_u_m),
+         tdn_u_m = as.numeric(tdn_u_m))
+
+```
+
+#### Find the mean of each column 
+
+```{r}
+mean_inlet_biochem <- vector(mode = "numeric", length = ncol(inlet_biochem))
+
+for (i in 1:ncol(inlet_biochem)){
+  mean_val <- mean(as.numeric(inlet_biochem[[i]]), na.rm = TRUE)
+  mean_inlet_biochem <- mean_val 
+}
+mean_inlet_biochem
+
+
+apply(X = inlet_biochem, 2, mean, na.rm = TRUE)
+
+map_df(.x = inlet_biochem, .f = mean)
+
+```
+
+

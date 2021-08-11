@@ -1,0 +1,99 @@
+---
+title: "Conditionals"
+author: "Paloma Cartwright"
+date: "11/08/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Part 1: Conditional Statements 
+
+#### Task 1 
+
+```{r}
+pm2_5 <- 48 
+
+if (pm2_5 < 100) {
+  print("Low to moderate risk")
+} else if (pm2_5 >= 100  & pm2_5 < 150) {
+  print("Unhealthy for sensitive groups")
+} else {
+  print("Health risk present")
+}
+
+```
+
+#### Task 2
+
+```{r}
+
+species <- "blue whale"
+
+if("whale" %in% species){
+  print("You found a whale!")
+}
+```
+
+
+#### Task 3
+
+```{r}
+
+max_airtemp_c <- 24.1 
+
+if(max_airtemp_c > 27){
+  print("Temperature too high")
+} else {
+  print("temperature is okay")
+}
+
+```
+
+#### Task 4 
+
+```{r}
+
+base_burrito <- 6.50 
+main_ingredient <- "steak"
+burrito_price <- 0
+
+if(main_ingredient == "veggie"){
+  burrito_price <- base_burrito 
+} else if (main_ingredient == "chicken"){
+  burrito_price <-  base_burrito + 3.00
+} else if (main_ingredient == "steak"){
+  burrito_price <- base_burrito + 3.25
+}
+burrito_price
+```
+
+#### Task 5 
+
+```{r}
+
+fish <- c(8, 10, 12, 23)
+fish_proport <- vector(mode = "numeric", length = length(fish))
+
+
+
+for(i in seq_along(fish)){
+  fish_proport[[i]] <- fish[i] / sum(fish)
+}
+fish_proport
+
+```
+
+#### Task 6
+```{r}
+
+for(i in seq_along(month.name)){
+  print(paste(month.name[i], "is month",i ))
+}
+
+```
+
+
+
